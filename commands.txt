@@ -3,7 +3,7 @@ docker compose build
 docker compose up / down
 
 #enter container shell
-docker exec -it tsunami_app shell
+docker exec -it tsunami_app sh
 
 #once in shell
 python manage.py migrate
@@ -13,3 +13,21 @@ python manage.py createsuperuser
 #go to localhost:8000/admin to log in
 
 #delete docker image then docker compose up again.
+
+
+#pushing container to docker hub remote repository
+When you build them, using docker build -t <hub-user>/<repo-name>[:<tag>]
+By re-tagging an existing local image 
+
+docker ps #to find existing-images
+docker tag <existing-image> <hub-user>/<repo-name>[:<tag>]
+
+docker compose ps to find existing/ running containers
+By using 
+docker commit <existing-container> <hub-user>/<repo-name>[:<tag>] to commit changes
+
+Now you can push this repository to the registry designated by its name or tag.
+
+docker push <hub-user>/<repo-name>:<tag>
+
+The image is then uploaded and available for use by your teammates and/or the community.
